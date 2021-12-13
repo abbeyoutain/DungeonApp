@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonLibrary
 {
-    public sealed class Monster: Character
+    public class Monster: Character
     {
         //fields
         private int _minDamage;
@@ -31,6 +31,11 @@ namespace DungeonLibrary
         }
 
         //constructors
+        public Monster()
+        {
+
+        }//end default CTOR
+
         public Monster(string name, string description, int hitChance, int blockChance,
             int maxLife, int life, string attackName, int maxDamage, int minDamage)
             : base(name, description, hitChance, blockChance, maxLife, life)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DungeonLibrary; //added
+using MonsterLibrary; //added
 
 namespace Dungeon
 {
@@ -29,6 +30,7 @@ malevolent creatures have taken to the place.
             Console.ReadLine();
             Console.WriteLine("What is your name?");
             string userName = Console.ReadLine();
+            Console.Clear();
 
             Console.WriteLine($"Welcome {userName}. Enter the palace...");
             Console.WriteLine(@"
@@ -67,15 +69,16 @@ malevolent creatures have taken to the place.
 
             Monster boggle = new Monster("Boggle", "Boggle description.", 2, 12, 14, 14, "Bite", 4, 1);
             Monster dryad = new Monster("Dryad", "Dryad description.", 2, 12, 20, 20, "Charm", 4, 1);
-            Monster hag = new Monster("Hag", "Hag description.", 4, 16, 30, 30, "Curse", 10, 2);
+            Hag hag = new Hag("Hag", "Hag description.", 4, 16, 25, 25, "Curse", 10, 2);
+            Hag ancientHag = new Hag();
             Monster pixie = new Monster("Pixie", "Pixie description.", 2, 13, 12, 12, "Bow", 3, 1);
             Monster quickling = new Monster("Quickling", "Quickling description.", 1, 10, 5, 5, "Dagger", 3, 1);
             Monster redcap = new Monster("Redcap", "Redcap description", 3, 14, 14, 14, "Sickle", 5, 1);
-            Monster troll = new Monster("Troll", "Troll Description", 5, 16, 30, 30, "Claw", 12, 2);
+            Troll troll = new Troll("Troll", "Troll Description", 4, 16, 25, 25, "Claw", 10, 2);
+            Troll ancientTroll = new Troll();
             Monster willowisp = new Monster("Will-o'-wisp", "Will-o'-wisp", 3, 10, 10, 10, "Life Drain", 5, 1);
 
-            Monster[] monsterArray = new Monster[] { boggle, boggle, boggle, boggle, dryad, dryad, hag, pixie, pixie, pixie, pixie,
-                quickling, quickling, quickling, quickling, redcap, redcap, troll, willowisp, willowisp };
+            Monster[] monsterArray = new Monster[] { boggle, boggle, boggle, boggle, boggle, dryad, dryad, dryad, hag, hag, ancientHag, pixie, pixie, pixie, pixie, pixie, quickling, quickling, quickling, quickling, quickling, redcap, redcap, redcap, troll, troll, ancientTroll, willowisp, willowisp, willowisp };
 
             //Create a loop for the room and monster (outer loop).
 
@@ -89,7 +92,12 @@ malevolent creatures have taken to the place.
                 //Choose a Monster for the Player to battle.
                 int randomIndex = new Random().Next(monsterArray.Length);
                 Monster currentMonster = monsterArray[randomIndex];
-                Console.WriteLine($"A {currentMonster.Name} appears! They attack you with their " +
+                string firstWord = "A";
+                if (currentMonster.Name == "Ancient Hag" || currentMonster.Name == "Ancient Troll")
+                {
+                    firstWord = "An";
+                }
+                Console.WriteLine($"{firstWord} {currentMonster.Name} appears! They attack you with their " +
                     $"{currentMonster.AttackName}!");
 
                 //Create a loop for the user choice menu (inner loop).
@@ -151,7 +159,7 @@ Choose an action:
                         case "D5":
                         case "NumPad5":
                         case "Escape":
-                            Console.WriteLine("Goodbye");
+                            Console.WriteLine("Leaving Queen Titania's Palace undefended?");
                             exit = true;
                             break;
 
@@ -173,7 +181,7 @@ Choose an action:
                         
                     if (player.Life <= 0)
                     {
-                        Console.WriteLine($"You are dead.\n" +
+                        Console.WriteLine($"You have died honorably defending Queen Titania's Palace.\n" +
                             $"Score: {score}");
                         exit = true;
                     }//end if
@@ -181,7 +189,7 @@ Choose an action:
                 } while (!reload && !exit); //While reload and exit are both NOT TRUE, keep looping.
             } while (!exit); //While exit is NOT TRUE, keep looping.
 
-            Console.WriteLine("End of game.");
+            Console.WriteLine("Fare thee well.");
 
         }//end SVM
 

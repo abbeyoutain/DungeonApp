@@ -40,7 +40,12 @@ namespace DungeonLibrary
         }//end Life
 
         //constructors
-        protected Character(string name, string description, int hitChance, int blockChance, int maxLife, int life)
+        public Character()
+        {
+
+        }//end default CTOR
+
+        public Character(string name, string description, int hitChance, int blockChance, int maxLife, int life)
         {
             Name = name;
             Description = description;
