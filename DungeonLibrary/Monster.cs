@@ -56,9 +56,6 @@ namespace DungeonLibrary
         {
             return $"This is a {Name}.\n" +
                 $"{Description}.\n" +
-                $"Hit Chance: {HitChance}\n" +
-                $"Block Chance: {BlockChance}\n" +
-                $"Max Life: {MaxLife}\n" +
                 $"Current Life: {Life}";
         }//end ToString()
 

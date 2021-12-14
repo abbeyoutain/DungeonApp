@@ -19,12 +19,12 @@ namespace MonsterLibrary
         public Troll()
         {
             Name = "Ancient Troll";
-            Description = "Ancient Troll description";
+            Description = "Fearsome green-skinned giants, trolls eat anything they can catch and devour. Only acid and fire can arrest the regenerative properties of a troll’s flesh.";
             HitChance = 6;
             BlockChance = 18;
             MaxLife = 30;
             Life = 30;
-            AttackName = "Ancient Troll Attack";
+            AttackName = "Poison Claw";
             MaxDamage = 12;
             MinDamage = 2;
 

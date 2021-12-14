@@ -19,12 +19,12 @@ namespace MonsterLibrary
         public Hag()
         {
             Name = "Ancient Hag";
-            Description = "Ancient Hag description";
+            Description = "Hags represent all that is evil and cruel. Though they resemble withered crones, there is nothing mortal about these monstrous creatures, whose forms reflect only the wickedness in their hearts.";
             HitChance = 6;
             BlockChance = 18;
             MaxLife = 30;
             Life = 30;
-            AttackName = "Ancient Hag Attack";
+            AttackName = "Vicious Curse";
             MaxDamage = 12;
             MinDamage = 2;
 

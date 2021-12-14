@@ -67,20 +67,21 @@ malevolent creatures have taken to the place.
             Player player = new Player(userName, "Description", 5, 18, 30, 30);
             int score = 0;
 
-            Monster boggle = new Monster("Boggle", "Boggle description.", 2, 12, 14, 14, "Bite", 4, 1);
-            Monster dryad = new Monster("Dryad", "Dryad description.", 2, 12, 20, 20, "Charm", 4, 1);
-            Hag hag = new Hag("Hag", "Hag description.", 4, 16, 25, 25, "Curse", 10, 2);
+            Monster blinkDog = new Monster("Blink Dog", "A blink dog takes its name from its ability to blink in and out of existence, a talent it uses to aid its attacks and to avoid harm", 4, 16, 12, 12, "Bite", 8, 1);
+            Monster boggle = new Monster("Boggle", "Boggles are the little bogeys of fairy tales. They lurk under beds and in closets, waiting to frighten folk with their mischief", 2, 10, 8, 8, "Bite", 4, 1);
+            Monster dryad = new Monster("Dryad", "Dryads act as guardians of their woodland demesnes. Shy and reclusive, they watch interlopers from the trees", 3, 12, 20, 20, "Charm", 6, 1);
+            Hag hag = new Hag("Hag", "Hags represent all that is evil and cruel. Though they resemble withered crones, there is nothing mortal about these monstrous creatures, whose forms reflect only the wickedness in their hearts", 4, 16, 25, 25, "Curse", 10, 2);
             Hag ancientHag = new Hag();
-            Monster pixie = new Monster("Pixie", "Pixie description.", 2, 13, 12, 12, "Bow", 3, 1);
-            Monster quickling = new Monster("Quickling", "Quickling description.", 1, 10, 5, 5, "Dagger", 3, 1);
-            Monster redcap = new Monster("Redcap", "Redcap description", 3, 14, 14, 14, "Sickle", 5, 1);
-            Troll troll = new Troll("Troll", "Troll Description", 4, 16, 25, 25, "Claw", 10, 2);
+            Monster quickling = new Monster("Quickling", "A quickling is a small, slender fey, similar to a miniature elf with sharp, feral features. Its cold, cruel eyes gleam like jewels. Racing faster than the eye can track, each appears as little more than a blurry wavering in the air", 4, 10, 8, 8, "Dagger", 4, 1);
+            Monster redcap = new Monster("Redcap", "A redcap is a homicidal fey creature born of blood lust. Redcaps, although small, have formidable strength, which they use to hunt and kill without hesitation or regret", 3, 14, 14, 14, "Sickle", 6, 1);
+            Troll troll = new Troll("Troll", " Fearsome green-skinned giants, trolls eat anything they can catch and devour", 4, 16, 25, 25, "Claw", 10, 2);
             Troll ancientTroll = new Troll();
-            Monster willowisp = new Monster("Will-o'-wisp", "Will-o'-wisp", 3, 10, 10, 10, "Life Drain", 5, 1);
+            Monster willowisp = new Monster("Will-o'-wisp", "Will-o'-wisps are malevolent, wispy balls of light that haunt lonely places, bound by dark fate or dark magic to feed on fear and despair", 2, 10, 10, 10, "Life Drain", 8, 1);
 
-            Monster[] monsterArray = new Monster[] { boggle, boggle, boggle, boggle, boggle, dryad, dryad, dryad, hag, hag, ancientHag, pixie, pixie, pixie, pixie, pixie, quickling, quickling, quickling, quickling, quickling, redcap, redcap, redcap, troll, troll, ancientTroll, willowisp, willowisp, willowisp };
+            Monster[] monsterArray = new Monster[] { boggle, boggle, boggle, boggle, boggle, dryad, dryad, dryad, hag, hag, ancientHag, blinkDog, blinkDog, blinkDog, quickling, quickling, quickling, quickling, quickling, redcap, redcap, redcap, troll, troll, ancientTroll, willowisp, willowisp, willowisp };
 
             //Create a loop for the room and monster (outer loop).
+            bool playerWins = false;
 
             bool exit = false;
             do
@@ -132,6 +133,11 @@ Choose an action:
                                 Console.ReadLine();
                                 reload = true;
                                 score += 1;
+                                if (score >= 5)
+                                {
+                                    playerWins = true;
+                                    exit = true;
+                                }
                             }//end if
                             break;
 
@@ -178,7 +184,7 @@ Choose an action:
                     {
                         Console.WriteLine($"Careful! Your health is at {player.Life} / {player.MaxLife}!");
                     }//end if
-                        
+                    
                     if (player.Life <= 0)
                     {
                         Console.WriteLine($"You have died honorably defending Queen Titania's Palace.\n" +
@@ -186,10 +192,19 @@ Choose an action:
                         exit = true;
                     }//end if
 
+                    if (playerWins)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("After finishing your previous battle with a flourish, you find the next room quiet and clear...\n\n\n" +
+                            "You have cleared Queen Titania's Palace of all monsters!\n\n" +
+                            "Knowing it will be safe until Queen Titania's return, you take your leave.");
+                        Console.ReadLine();
+                    }
+
                 } while (!reload && !exit); //While reload and exit are both NOT TRUE, keep looping.
             } while (!exit); //While exit is NOT TRUE, keep looping.
 
-            Console.WriteLine("Fare thee well.");
+            Console.WriteLine($"Fare thee well, {userName}.");
 
         }//end SVM
 
